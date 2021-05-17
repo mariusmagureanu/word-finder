@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WordCounterTest {
 
     private static final File dataDir = new File("data");
+    private static final Map<String, String> testFiles = new HashMap<>();
 
     @AfterAll
     static void deleteDataFolder() {
@@ -32,7 +33,7 @@ public class WordCounterTest {
 
     @BeforeAll
     static void createDataFolder() {
-        final Map<String, String> testFiles = new HashMap<>();
+        testFiles.clear();
         testFiles.put("a.txt", "foo !bar? baz");
         testFiles.put("b.txt", "fo .foo. foo.o");
         testFiles.put("c.txt", "   foo     bar      baz    ");
@@ -101,5 +102,12 @@ public class WordCounterTest {
         assertEquals(33, out.get("c.txt"));
         assertEquals(0, out.get("e.txt"));
         assertEquals(0, out.get("f.txt"));
+    }
+
+    @Test
+    public void testReadFileCount() {
+        final WordCounter wc = new WordCounter(dataDir.getPath());
+
+        assertEquals(testFiles.size(), wc.totalReadFiles());
     }
 }

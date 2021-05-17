@@ -6,11 +6,12 @@ import java.util.*;
 public class Main {
 
     private static final int DISPLAY_LIMIT = 10;
+    private static final Console console = System.console();
 
     private static void print(final Map<String, Integer> input) {
 
-        if (input.values().isEmpty() || Collections.max(input.values()) ==0) {
-            System.out.println("$ no matches found\n");
+        if (input.values().isEmpty() || Collections.max(input.values()) == 0) {
+            console.writer().println("$ no matches found\n");
             return;
         }
 
@@ -20,25 +21,27 @@ public class Main {
 
         var idx = 1;
         for (Map.Entry<String, Integer> x : reverseSortedMap.entrySet()) {
-            System.out.printf("%2d. %-30s: %d%%\n", idx, x.getKey(), x.getValue());
+            console.writer().printf("%2d. %-30s: %d%%\n", idx, x.getKey(), x.getValue());
             if (idx == DISPLAY_LIMIT) {
                 break;
             }
             idx++;
         }
-        System.out.println();
+        console.writer().println();
     }
 
     public static void main(String[] args) {
+
         if (args.length == 0) {
-            System.out.println("Not enough provided arguments\n");
-            System.out.println("Usage:");
-            System.out.println("      java com.word.Main /some/path/to/a/folder\n");
+            console.writer().println("Not enough provided arguments\n");
+            console.writer().println("Usage:");
+            console.writer().println("      java com.word.Main /some/path/to/a/folder\n");
             System.exit(1);
         }
 
-        final Console console = System.console();
         final WordCounter wc = new WordCounter(args[0]);
+
+        console.writer().printf("%d files read in directory: %s\n\n", wc.totalReadFiles(), args[0]);
 
         while (true) {
             var line = console.readLine("search $ ");

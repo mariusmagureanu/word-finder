@@ -14,6 +14,8 @@ public class WordCounter {
 
     final static String WORD_REGEX = "[^a-zA-Z]+";
 
+    private int readFileCount;
+
     /**
      * folderContent is a dictionary which has words as keys and
      * a list of filenames where the word is to be found as values.
@@ -62,6 +64,7 @@ public class WordCounter {
      * @param folderPath Path to said folder.
      */
     private void loadFolder(final String folderPath) throws IOException {
+        this.readFileCount = 0;
 
         try (final Stream<Path> files = Files.walk(Paths.get(folderPath), 1)) {
             files.filter(Files::isRegularFile)
@@ -75,6 +78,7 @@ public class WordCounter {
                                         this.folderContent.putIfAbsent(w, new ArrayList<>());
                                         this.folderContent.get(w).add(fileName);
                                     });
+                                    this.readFileCount++;
                                 } catch (IOException e) {
                                     System.out.println(e);
                                     System.exit(1);
@@ -113,5 +117,13 @@ public class WordCounter {
         });
 
         return this.ranks;
+    }
+
+    /**
+     * @return the number of all read files
+     * in the specified folder.
+     */
+    public int totalReadFiles() {
+        return this.readFileCount;
     }
 }
