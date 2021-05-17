@@ -9,7 +9,7 @@ public class Main {
 
     private static void print(final Map<String, Integer> input) {
 
-        if (Collections.max(input.values()) ==0) {
+        if (input.values().isEmpty() || Collections.max(input.values()) ==0) {
             System.out.println("$ no matches found\n");
             return;
         }
