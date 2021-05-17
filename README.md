@@ -68,7 +68,7 @@ Either of the above options will end up with a search prompt.
 
 If entered alone, word finder will treat ``quit`` in a special manner allowing
 exiting the running process. Please note that in this situation - casing - is not
-accounted for, thus any of the following will exit the application:``quit, Quit, qUiTe..etc ``
+accounted for, thus any of the following will exit the application:``quit, Quit, qUiT..etc ``
 
 However, if ``quit`` is accompanied by other words then it will also be part of the search criteria.
 
