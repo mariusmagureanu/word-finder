@@ -6,7 +6,7 @@ Word Finder is a small java application which searches for any given words in a 
 ## How does it work?
 
 Word Finder reads all words from the files in the first level of the specified folder. By the time it finishes reading all of these files it will end up with a dictionary having  the words as keys and a list of file names with word occurrences as values.
-Essentially, this dictionary is a union of all words in the first level of folder.
+Essentially, this dictionary is a union of all words in the first level of the folder.
 
 What's a **word**?
 
