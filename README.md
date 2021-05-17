@@ -66,7 +66,7 @@ Either of the above options will end up with a search prompt.
 
 ## How do I quit it?
 
-If entered alone, word finder will treat ``quit`` in a special manner allowing
+If entered alone, Word Finder will treat ``quit`` in a special manner allowing
 exiting the running process. Please note that in this situation - casing - is not
 accounted for, thus any of the following will exit the application:``quit, Quit, qUiT..etc ``
 
